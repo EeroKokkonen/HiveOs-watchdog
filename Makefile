@@ -28,8 +28,8 @@ install: $(service_dir) electric-watchdog.service
 	$(venv)/bin/pip3 install -r requirements.txt
 
 	@echo Installation complete...
-	@echo run 'systemctl start mypythonservice' to start service
-	@echo run 'systemctl status mypythonservice' to view status
+	@echo run 'systemctl start electric-watchdog' to start service
+	@echo run 'systemctl status electric-watchdog' to view status
 
 uninstall:
 	-systemctl stop electric-watchdog
