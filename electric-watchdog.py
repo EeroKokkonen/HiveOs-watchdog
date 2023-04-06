@@ -25,7 +25,7 @@ def main():
     max_electric_price = 0
 
     try:
-        max_electric_price = float(os.getenv("PRICE", default=10))
+        max_electric_price = float(os.getenv("PRICE", default=6))
     except FileNotFoundError:
         logger.error(f"Price not specified. Set value to PRICE in .env file.")
         return
@@ -76,12 +76,12 @@ def main():
 
         if time_to_shutdown <= 0:
             time_to_shutdown = 0
-        logger.info(f"Time to shutdown: {time_to_shutdown}")
+        logger.info(f"Time to shutdown: {time_to_shutdown / 60 / 60} h")
         time.sleep(time_to_shutdown)
 
         logger.info(f"Electricity price is over {max_electric_price}, shuttingdown..")
         shutdown_time = expensive_hours[0]["gapInSeconds"]
-        logger.info(f"Shutdown time: {shutdown_time}")
+        logger.info(f"Shutdown time: {shutdown_time  / 60 / 60} h")
 
         os.system(f"/hive/sbin/sreboot wakealarm {str(shutdown_time)}")
 
