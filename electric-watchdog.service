@@ -1,0 +1,13 @@
+[Unit]
+Description=Watchdog for keeping rig up only cheap electric hours
+
+[Service]
+WorkingDirectory=/usr/local/lib/electric-watchdog/
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/usr/local/etc/electric-watchdog/electric-watchdog.env
+ExecStart=/usr/local/lib/electric-watchdog/venv/bin/python3 /usr/local/lib/electric-watchdog/electric-watchdog.py
+
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

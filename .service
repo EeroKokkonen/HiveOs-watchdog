@@ -1,0 +1,11 @@
+[Unit]
+Description=Electric watchdog
+
+[Service]
+WorkingDirectory=/home/user/bin/HiveOs-Watchdog/
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/home/user/bin/HiveOs-Watchdog/config.env
+ExecStart=/home/user/bin/HiveOs-Watchdog/electric-watchdog.py
+
+[Install]
+WantedBy=default.target
