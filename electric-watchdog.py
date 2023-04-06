@@ -98,9 +98,8 @@ def get_chained_expensive_hours(expensive_hours):
     chained_expensive_hours = []
     # make chain from expensive hours
     for hours in expensive_hours:
-        if endDate.date() != hours["startDate"].date() and endDate.time() != hours["startDate"].time():
+        if endDate.date() != hours["startDate"].date() or endDate.time() != hours["startDate"].time():
             chained_expensive_hours.append({"startDate":startDate, "endDate": endDate, "gapInSeconds": (endDate - startDate).total_seconds()})
-            print()
             startDate = hours["startDate"]
 
         endDate = hours["endDate"]
