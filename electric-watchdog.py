@@ -17,6 +17,7 @@ def main():
     
     logger = logging.getLogger("watchdog-logger")
     logger.propagate = int(os.getenv('LOGGING', default=True))
+    timezone = int(os.getenv("TIMEZONE", default=0))
 
         
         
@@ -69,7 +70,7 @@ def main():
 
         expensive_hours = get_chained_expensive_hours(expensive_hours)
 
-        logger.info(f"Next scheduled shutdown will be at {expensive_hours[0]['startDate'] + timedelta(hours=3)} - {expensive_hours[0]['endDate'] + timedelta(hours=3)}")
+        logger.info(f"Next scheduled shutdown will be at {expensive_hours[0]['startDate'] + timedelta(hours=timezone)} - {expensive_hours[0]['endDate'] + timedelta(hours=timezone)}")
 
         time_to_shutdown = (expensive_hours[0]["startDate"] - today).total_seconds()
         
