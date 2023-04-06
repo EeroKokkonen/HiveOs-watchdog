@@ -77,12 +77,12 @@ def main():
 
         if time_to_shutdown <= 0:
             time_to_shutdown = 0
-        logger.info(f"Time to shutdown: {time_to_shutdown / 60 / 60} h")
+        logger.info(f"Time to shutdown: {float(time_to_shutdown) / 60 / 60} h")
         time.sleep(time_to_shutdown)
 
         logger.info(f"Electricity price is over {max_electric_price}, shuttingdown..")
         shutdown_time = expensive_hours[0]["gapInSeconds"]
-        logger.info(f"Shutdown time: {shutdown_time  / 60 / 60} h")
+        logger.info(f"Shutdown time: {float(shutdown_time)  / 60 / 60} h")
 
         os.system(f"/hive/sbin/sreboot wakealarm {str(shutdown_time)}")
 
