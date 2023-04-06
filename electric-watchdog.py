@@ -25,7 +25,7 @@ def main():
     max_electric_price = 0
 
     try:
-        max_electric_price = float(os.getenv("PRICE", default=6))
+        max_electric_price = float(os.getenv("PRICE", default=10))
     except FileNotFoundError:
         logger.error(f"Price not specified. Set value to PRICE in .env file.")
         return
