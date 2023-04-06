@@ -5,7 +5,6 @@ import json
 from datetime import datetime
 import pytz
 import time
-import subprocess
 import logging
 import os
 
@@ -74,6 +73,7 @@ def main():
         logger.info(f"Next scheduled shutdown will be at {expensive_hours[0]['startDate']} - {expensive_hours[0]['endDate']}")
 
         time_to_shutdown = (expensive_hours[0]["startDate"] - today).total_seconds()
+        logger.info(f"Time to shutdown: {time_to_shutdown}")
 
         if time_to_shutdown <= 0:
             time_to_shutdown = 0
@@ -82,6 +82,7 @@ def main():
 
         logger.info(f"Electricity price is over {max_electric_price}, shuttingdown..")
         shutdown_time = expensive_hours[0]["gapInSeconds"]
+        logger.info(f"Shutdown time: {shutdown_time}")
 
         os.system(f"/hive/sbin/sreboot wakealarm {str(shutdown_time)}")
 
