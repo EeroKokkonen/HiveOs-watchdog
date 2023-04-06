@@ -2,7 +2,7 @@
 
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import pytz
 import time
 import logging
@@ -25,7 +25,7 @@ def main():
     max_electric_price = 0
 
     try:
-        max_electric_price = float(os.getenv("PRICE"))
+        max_electric_price = float(os.getenv("PRICE", default=6))
     except FileNotFoundError:
         logger.error(f"Price not specified. Set value to PRICE in .env file.")
         return
@@ -55,7 +55,6 @@ def main():
             startDate = datetime.strptime(data["startDate"], iso_format)
 
             if float(data["price"]) > max_electric_price and endDate > today:
-                print(data)
                 expensive_hours.append({
                         "price": data["price"],
                         "endDate": endDate,
@@ -70,25 +69,25 @@ def main():
 
         expensive_hours = get_chained_expensive_hours(expensive_hours)
 
-        logger.info(f"Next scheduled shutdown will be at {expensive_hours[0]['startDate']} - {expensive_hours[0]['endDate']}")
+        logger.info(f"Next scheduled shutdown will be at {expensive_hours[0]['startDate'] + timedelta(hours=3)} - {expensive_hours[0]['endDate'] + timedelta(hours=3)}")
 
         time_to_shutdown = (expensive_hours[0]["startDate"] - today).total_seconds()
-        logger.info(f"Time to shutdown: {time_to_shutdown}")
+        
 
         if time_to_shutdown <= 0:
             time_to_shutdown = 0
-
-        time.sleep(time_to_shutdown)
+        logger.info(f"Time to shutdown: {time_to_shutdown}")
+        #time.sleep(time_to_shutdown)
 
         logger.info(f"Electricity price is over {max_electric_price}, shuttingdown..")
         shutdown_time = expensive_hours[0]["gapInSeconds"]
         logger.info(f"Shutdown time: {shutdown_time}")
 
-        os.system(f"/hive/sbin/sreboot wakealarm {str(shutdown_time)}")
+        #os.system(f"/hive/sbin/sreboot wakealarm {str(shutdown_time)}")
 
 
 
-        time.sleep(shutdown_time)
+        #time.sleep(shutdown_time)
 
         run = False
 
