@@ -83,7 +83,8 @@ def main():
         logger.info(f"Electricity price is over {max_electric_price}, shuttingdown..")
         shutdown_time = expensive_hours[0]["gapInSeconds"]
 
-        subprocess.run(["sreboot", "wakealarm", str(shutdown_time)])
+        subprocess_result = subprocess.run(["sreboot", "wakealarm", str(shutdown_time)])
+        logger.debug(subprocess_result)
         time.sleep(shutdown_time)
 
         run = False
