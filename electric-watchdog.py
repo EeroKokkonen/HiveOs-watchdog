@@ -83,7 +83,7 @@ def main():
         logger.info(f"Electricity price is over {max_electric_price}, shuttingdown..")
         shutdown_time = expensive_hours[0]["gapInSeconds"]
 
-        os.system(f"sreboot wakealarm {str(shutdown_time)}")
+        os.system(f"/hive/sbin/sreboot wakealarm {str(shutdown_time)}")
 
 
 
