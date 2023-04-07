@@ -1,5 +1,5 @@
 [Unit]
-Description=Watchdog for keeping rig up only cheap electric hours
+Description=Electric-watchdog
 
 [Service]
 WorkingDirectory=/usr/local/lib/electric-watchdog/
