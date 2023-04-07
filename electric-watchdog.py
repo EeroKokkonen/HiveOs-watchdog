@@ -8,9 +8,8 @@ import time
 import subprocess
 import logging
 import os
-from dotenv import load_dotenv
+
 def main():
-    load_dotenv()
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s - %(message)s",
                         datefmt="%Y.%m-%d %H:%M:%S",
@@ -18,11 +17,8 @@ def main():
                         filemode="a")
     
     logger = logging.getLogger("watchdog-logger")
-    try:
-        logger.propagate = int(os.getenv('LOGGING', default=False))
-    except Exception as e:
-        print("LOGGER value in config.env file must be 0 or 1!")
-        return
+    logger.propagate = int(os.getenv('LOGGING', default=True))
+
         
         
     iso_format = '%Y-%m-%dT%H:%M:%S.%f%z'
@@ -32,10 +28,10 @@ def main():
     try:
         max_electric_price = float(os.getenv("PRICE"))
     except FileNotFoundError:
-        print(f"Price not specified. Set value to PRICE in config.env file.")
+        logger.error(f"Price not specified. Set value to PRICE in .env file.")
         return
     except ValueError:
-        print("Price of electricity must be positive integer")
+        logger.error("Price of electricity must be number")
         return
     except Exception as e:
         print("Unkown error!")
@@ -47,7 +43,6 @@ def main():
     while(run):
 
         today = datetime.strptime(datetime.now(pytz.timezone('UTC')).strftime(iso_format), iso_format)
-
         try:
             res = requests.get(api_url)
             response = json.loads(res.text)
@@ -59,16 +54,19 @@ def main():
         for data in reversed(response["prices"]):
             endDate = datetime.strptime(data["endDate"], iso_format)
             startDate = datetime.strptime(data["startDate"], iso_format)
-            if data["price"] > max_electric_price and endDate > today:
+
+            if float(data["price"]) > max_electric_price and endDate > today:
+                print(data)
                 expensive_hours.append({
                         "price": data["price"],
                         "endDate": endDate,
                         "startDate": startDate
                     })
+
         # If there is no expensive hours, sleeps 12 hours and checks prices again
         if len(expensive_hours) == 0:
+            logger.info(f"Electricity price is under {max_electric_price}, cheking new prices after 8 hours...")
             time.sleep(8 * 60 * 60)
-            logger.info(f"Electricity is under {max_electric_price}, cheking new prices after 8 hours...")
             continue
 
         expensive_hours = get_chained_expensive_hours(expensive_hours)
