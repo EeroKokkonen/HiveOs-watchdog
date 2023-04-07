@@ -84,7 +84,11 @@ def main():
         shutdown_time = expensive_hours[0]["gapInSeconds"]
 
         subprocess_result = subprocess.run(["sreboot", "wakealarm", str(shutdown_time)])
-        logger.debug(subprocess_result)
+        logger.info(subprocess_result)
+        logger.info(subprocess_result.returncode)
+        logger.info(subprocess_result.stdout)
+
+
         time.sleep(shutdown_time)
 
         run = False
