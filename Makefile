@@ -23,13 +23,14 @@ install: $(service_dir) electric-watchdog.service
 	chown root:root $(conf_dir)/*
 	chmod 644 $(conf_dir)/*
 
-	@echo Creating python virtual environment and isntalling packages...
+	@echo Creating python virtual environment and installing packages...
 	python3 -m venv $(venv)
 	$(venv)/bin/pip3 install -r requirements.txt
 
 	@echo Installation complete...
 	@echo run 'systemctl start electric-watchdog' to start service
 	@echo run 'systemctl status electric-watchdog' to view status
+	@echo run 'systemctl enable electric-watchdog' to automatically run watchdog on reboot
 
 uninstall:
 	-systemctl stop electric-watchdog
