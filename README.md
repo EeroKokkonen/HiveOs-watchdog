@@ -77,21 +77,21 @@ To modify confugrations type:
 ![image](https://github.com/EeroKokkonen/HiveOs-watchdog/assets/101599252/f643d84d-7796-4ffb-b0a8-590fcaf03d73)
 
 ### PRICE
-The price determines at what point the watchdog shuts down the rig.__
-Example:__
-`PRICE=8.7`  Means rig will be off when electricity price is over 8.7cents/kWh__
-`PRICE=10`   Means rig will be off when electricity price is over 10cents/kWh__
+The price determines at what point the watchdog shuts down the rig. <br />
+Example: <br />
+`PRICE=8.7`  Means rig will be off when electricity price is over 8.7cents/kWh <br />
+`PRICE=10`   Means rig will be off when electricity price is over 10cents/kWh <br />
 
 ### LOGGING
-Logging is just for debugging Watcdog, so most likely you don't want it to be on.__
-Example:__
-`LOGGING=0`  Means logging is off__
-`LOGGING=1`  Means logging is on__
+Logging is just for debugging Watcdog, so most likely you don't want it to be on. <br />
+Example: <br />
+`LOGGING=0`  Means logging is off <br />
+`LOGGING=1`  Means logging is on <br />
 
 ### TIMEZONE
-This only affects to logging so if you dont use logging you don't need to touch this.__
-Example:__
-`TIMEZONE=0`  Means you are in UTC+3 Time Zone__
+This only affects to logging so if you dont use logging you don't need to touch this. <br />
+Example: <br />
+`TIMEZONE=0`  Means you are in UTC+3 Time Zone<br />
 
 ## Installing HiveOs-watchdog
 If you are not already inside HiveOs-watchdog folder type:
@@ -119,13 +119,13 @@ And changing the price. After rebooting the rig, watchdog will follow the new pr
 
 ## Other usefull commands
 
-If you just want to turn watchdog off type:__
+If you just want to turn watchdog off type: <br />
 `systemctl stop electric-watchdog`
 
-If you don't want watchdog to automatically go on when booting type:__
+If you don't want watchdog to automatically go on when booting type: <br />
 `systemctl disable electric-watchdog`
 
-If you want to get rid of watchdog go to the HiveOs-watchdog folder and type:__
+If you want to get rid of watchdog go to the HiveOs-watchdog folder and type: <br />
 `make uninstall`
 
 
