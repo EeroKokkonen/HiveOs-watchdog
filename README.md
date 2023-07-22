@@ -113,8 +113,8 @@ To make watchdog start when rig boots:
 Now everything should be fine and watchdog should keep watch over your rig.
 
 ## Modyfying cofigs after installation
-If you want to change the price cap you can to do it by typing:
-`nano /usr/local/etc/electric-watchdog/electric-watchdog.env`
+If you want to change the price cap you can to do it by typing: <br />
+`nano /usr/local/etc/electric-watchdog/electric-watchdog.env` <br />
 And changing the price. After rebooting the rig, watchdog will follow the new price cap.
 
 ## Other usefull commands
