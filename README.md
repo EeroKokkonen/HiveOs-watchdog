@@ -66,7 +66,7 @@ sudo python3.8 get-pip.py
 sudo apt install python3.8-venv
 ```
 
-Now all should be ready.
+Now all should be ready for configurating and installing watchdog.
 
 ## Configure HiveOS-watchdog <ins>before</ins> installation
 If you are not already inside HiveOs-watchdog folder type:
