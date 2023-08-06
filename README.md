@@ -94,12 +94,11 @@ Example: <br />
 `TIMEZONE=0`  Means you are in UTC+3 Time Zone<br />
 
 ### Saving the file
-After you have made all the wanted changes, press following keys:
-```
-ctrl + o
-enter
-ctrl + x
-```
+After you have made all the wanted changes, press following keys:  
+`ctrl + o`  
+`enter`  
+`ctrl + x`  
+
 
 ## Installing HiveOs-watchdog
 If you are not already inside HiveOs-watchdog folder type:
@@ -123,8 +122,9 @@ Now everything should be fine and watchdog should keep watch over your rig.
 ## Modifying configs <ins>after</ins> installation
 If you want to change the price cap you can to do it by typing: <br />
 `nano /usr/local/etc/electric-watchdog/electric-watchdog.env` <br />
-And changing the price. After rebooting the rig, watchdog will follow the new price cap.
-More detailed information can be found above.
+And changing the price. After rebooting the rig, watchdog will follow the new price cap.  
+  
+<ins>More detailed information can be found above.</ins>
 
 ## Other usefull commands
 
