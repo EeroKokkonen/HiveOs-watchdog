@@ -91,7 +91,7 @@ Example: <br />
 ### TIMEZONE
 This only affects to logging so if you dont use logging you don't need to touch this. <br />
 Example: <br />
-`TIMEZONE=0`  Means you are in UTC+3 Time Zone<br />
+`TIMEZONE=3`  Means you are in UTC+3 Time Zone<br />
 
 ### Saving the file
 After you have made all the wanted changes, press following keys:  
