@@ -68,12 +68,12 @@ sudo apt install python3.8-venv
 
 Now all should be fine.
 
-## Configure HiveOS-watchdog before installation
+## Configure HiveOS-watchdog <ins>before</ins> installation
 If you are not already inside HiveOs-watchdog folder type:
-cd /home/user/HiveOs-watchdog
+```cd /home/user/HiveOs-watchdog```
 
 To modify confugrations type:
-`nano electric-watchdog.env`
+```nano electric-watchdog.env```
 ![image](https://github.com/EeroKokkonen/HiveOs-watchdog/assets/101599252/f643d84d-7796-4ffb-b0a8-590fcaf03d73)
 
 ### PRICE
@@ -92,6 +92,14 @@ Example: <br />
 This only affects to logging so if you dont use logging you don't need to touch this. <br />
 Example: <br />
 `TIMEZONE=0`  Means you are in UTC+3 Time Zone<br />
+
+### Saving the file
+After you have made all the wanted changes, press following keys:
+'''
+ctrl + o
+enter
+ctrl + x
+'''
 
 ## Installing HiveOs-watchdog
 If you are not already inside HiveOs-watchdog folder type:
@@ -112,7 +120,7 @@ To make watchdog start when rig boots:
 
 Now everything should be fine and watchdog should keep watch over your rig.
 
-## Modifying configs after installation
+## Modifying configs <ins>after</ins> installation
 If you want to change the price cap you can to do it by typing: <br />
 `nano /usr/local/etc/electric-watchdog/electric-watchdog.env` <br />
 And changing the price. After rebooting the rig, watchdog will follow the new price cap.
